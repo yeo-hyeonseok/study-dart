@@ -50,6 +50,32 @@ class Character_4 {
   String sayHello() => '아 난... ${name}이라는 사람입니다. 우린 10년 만에 $money억을 벌었어.';
 }
 
+class Player {
+  final String name;
+  int power;
+  String team;
+
+  Player({required this.name, required this.power, required this.team});
+
+  // named 생성자, 콜론의 의미는 해당 프로퍼티들을 초기화 해주겠다는 말
+  // final 키워드와 무관
+  Player.createRedTeam({
+    required String name,
+    required int power,
+  })  : this.name = name,
+        this.power = power,
+        this.team = 'RED';
+
+  Player.createBlueTeam(
+    String name,
+    int power,
+  )   : this.name = name,
+        this.power = power,
+        this.team = 'BLUE';
+
+  String getPlayerInfo() => '이름: $name \n 전투력: $power \n 소속: $team';
+}
+
 void main() {
   // dart에서는 인스턴스 생성 시 꼭 new 키워드 붙일 필요 없음
   var actor_1 = Character_1();
@@ -70,4 +96,10 @@ void main() {
 
   var actor_4 = Character_4(money: 700, name: '차무식');
   print(actor_4.sayHello());
+
+  var player = Player(name: '차무식', power: 700, team: 'RED');
+
+  var RedPlayer = Player.createRedTeam(name: '레드무식', power: 800);
+
+  var Blue = Player.createBlueTeam('블루무식', 600);
 }
